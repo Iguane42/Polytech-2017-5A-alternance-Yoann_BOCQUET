@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ZeQuizz</string>
+    <string name="btn_1V1">1 Vs 1</string>
+    <string name="btn_1VIA">1 Vs IA</string>
+    <string name="lbl_offline">Offline : </string>
+    <string name="lbl_online">Online : </string>
+    <string name="btn_AvB">Team A vs Team B</string>
+    <string name="btn_1V1_online">1 vs 1 Online</string>
+    <string name="lbl_team">Team : B</string>
+    <string name="lbl_player">Player : Lucie</string>
+    <string name="lbl_lives">Lives : 3</string>
+    <string name="lbl_score">Score : 18</string>
+    <string name="lbl_question">To which animal does this scream belong ? </string>
+    <string name="lbl_value">Value : 5pts</string>
+    <string name="btn_prop_a">Dog</string>
+    <string name="btn_prop_b">Cat</string>
+    <string name="btn_prop_c">Horse</string>
+    <string name="btn_prop_d">Cow</string>
+</resources>

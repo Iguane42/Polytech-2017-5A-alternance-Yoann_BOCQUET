@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">TP1</string>
+    <string name="app_name">ZeQuizz</string>
+    <string name="btn_1V1">1 Vs 1</string>
+    <string name="btn_1VIA">1 Vs IA</string>
+    <string name="lbl_offline">Offline : </string>
+    <string name="lbl_online">Online : </string>
+    <string name="btn_AvB">Team A vs Team B</string>
+    <string name="btn_1V1_online">1 vs 1 Online</string>
+    <string name="lbl_team">Equipe : B</string>
+    <string name="lbl_player">Joueur : Lucie</string>
+    <string name="lbl_lives">Vies : 3</string>
+    <string name="lbl_score">Score : 18</string>
+    <string name="lbl_question">De quel animal est-ce le cri ?</string>
+    <string name="lbl_value">Valeur : 5pts</string>
+    <string name="btn_prop_a">Chien</string>
+    <string name="btn_prop_b">Chat</string>
+    <string name="btn_prop_c">Cheval</string>
+    <string name="btn_prop_d">Vache</string>
+    <string name="title_activity_menu_fragment">MenuFragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
