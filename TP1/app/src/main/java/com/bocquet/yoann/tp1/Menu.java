@@ -1,8 +1,10 @@
 package com.bocquet.yoann.tp1;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -13,12 +15,19 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("Info", "Menu activity onCreate.");
         setContentView(R.layout.activity_menu);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FragmentContainer, new FragmentMenu());
+        fragmentTransaction.commit();
     }
 
     public void openGame(View v)
     {
-        Intent i = new Intent(this, Jeu.class);
-        this.startActivity(i);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_left_in, R.animator.slide_left_out);
+        fragmentTransaction.replace(R.id.FragmentContainer, new FragmentJeu());
+        fragmentTransaction.commit();
     }
 
     @Override
