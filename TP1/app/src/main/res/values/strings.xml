@@ -17,7 +17,5 @@
     <string name="btn_prop_c">Cheval</string>
     <string name="btn_prop_d">Vache</string>
     <string name="title_activity_menu_fragment">MenuFragment</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_launched">Vous avez une partie en cours.</string>
 </resources>

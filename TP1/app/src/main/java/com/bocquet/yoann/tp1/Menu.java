@@ -3,12 +3,20 @@ package com.bocquet.yoann.tp1;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 
 public class Menu extends AppCompatActivity {
+    private BroadcastReceiver NotificationReceiver;
+    private IntentFilter intentfilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +27,20 @@ public class Menu extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FragmentContainer, new FragmentMenu());
         fragmentTransaction.commit();
+        intentfilter = new IntentFilter();
+        intentfilter.addAction("com.bocquet.yoann.tp1.notification");
+        NotificationReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle("ZeQuizz")
+                        .setContentText(intent.getStringExtra("data"));
+                NotificationManager mNotifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotifManager.notify(1,mBuilder.build());
+            }
+        };
+
     }
 
     public void openGame(View v)
@@ -45,13 +67,15 @@ public class Menu extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("Info", "Menu activity onPause.");
+        //Log.d("Info", "Menu activity onPause.");
+        unregisterReceiver(NotificationReceiver);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Info", "Menu activity onResume.");
+        //Log.d("Info", "Menu activity onResume.");
+        registerReceiver(NotificationReceiver, intentfilter);
     }
 
     @Override
