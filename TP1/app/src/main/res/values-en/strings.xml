@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ZeQuizz</string>
     <string name="btn_1V1">1 Vs 1</string>
     <string name="btn_1VIA">1 Vs IA</string>
     <string name="lbl_offline">Offline : </string>

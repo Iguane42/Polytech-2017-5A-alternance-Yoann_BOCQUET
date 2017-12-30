@@ -1,4 +1,4 @@
-package com.bocquet.yoann.tp1;
+package com.bocquet.yoann.tp1.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bocquet.yoann.tp1.R;
 
 
 public class FragmentJeu extends Fragment {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZeQuizz</string>
+    <string name="app_name">ZeBeerz</string>
     <string name="btn_1V1">1 Vs 1</string>
     <string name="btn_1VIA">1 Vs IA</string>
     <string name="lbl_offline">Offline : </string>
@@ -18,4 +18,5 @@
     <string name="btn_prop_d">Vache</string>
     <string name="title_activity_menu_fragment">MenuFragment</string>
     <string name="game_launched">Vous avez une partie en cours.</string>
+    <string name="alcohol_short">Alc.</string>
 </resources>
