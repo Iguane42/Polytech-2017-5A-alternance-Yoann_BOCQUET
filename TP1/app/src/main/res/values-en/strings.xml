@@ -16,4 +16,5 @@
     <string name="btn_prop_c">Horse</string>
     <string name="btn_prop_d">Cow</string>
     <string name="game_launched">You have a game running.</string>
+    <string name="first_brewed">First brewed</string>
 </resources>

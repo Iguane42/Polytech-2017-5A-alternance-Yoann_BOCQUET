@@ -1,5 +1,7 @@
 package com.bocquet.yoann.tp1.Models;
 
+import android.util.Log;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +27,7 @@ public class BeerAPI {
 
     public Call<List<Beer>> getBeerList(int nPage, int nPerPage)
     {
+        Log.d("Info", "Called getBeerList");
         Call<List<Beer>> beersCall = API.listBeers(nPage, nPerPage);
         return beersCall;
     }

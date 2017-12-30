@@ -1,13 +1,7 @@
 package com.bocquet.yoann.tp1.Models;
 
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.InputStream;
-import java.net.URL;
 
 /**
  * Created by Epulapp on 30/11/2017.

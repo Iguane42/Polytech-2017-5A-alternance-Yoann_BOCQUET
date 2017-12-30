@@ -1,14 +1,8 @@
 package com.bocquet.yoann.tp1.UI;
 
 import android.content.Context;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bocquet.yoann.tp1.Models.Beer;
+import com.bocquet.yoann.tp1.Models.DownLoadImageTask;
 import com.bocquet.yoann.tp1.R;
 
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,18 +26,31 @@ public class BeerListAdapter extends ArrayAdapter<Beer> {
     private final List<Beer> mItems;
     private final Context mContext;
     private final LayoutInflater mInflater;
+    private List<DownLoadImageTask> dlList;
+    private boolean stopped;
 
     public BeerListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Beer> objects) {
         super(context, resource, objects);
-
+        dlList = new ArrayList<DownLoadImageTask>();
         mItems = objects;
         mContext = context;
         mInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        stopped = false;
+    }
+
+    public void stop()
+    {
+        for(DownLoadImageTask dl :dlList) {
+            if (!dl.isCancelled()) {
+                dl.cancel(true);
+            }
+        }
+        stopped = true;
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView == null)
         {
             convertView = mInflater.inflate(R.layout.list_element, null);
@@ -57,26 +65,15 @@ public class BeerListAdapter extends ArrayAdapter<Beer> {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        Beer item = getItem(position);
+        final Beer item = getItem(position);
         if (item != null)
         {
-            // This is where you set up the views.
-            // This is just an example of what you could do.
+
             holder.beerName.setText(item.getName());
             holder.alcVol.setText(mContext.getString(R.string.alcohol_short)+" "+String.valueOf(item.getAbv())+"%");
-            new DownloadImageTask(holder.thumbnail).execute(item.getImageUrl());
-
-            /*holder.button.setOnClickListener(
-                    new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View view)
-                        {
-                            holder.video.setVideoURI(item.getURI());
-                            holder.video.start();
-                        }
-                    }
-            );*/
+            DownLoadImageTask dl = new DownLoadImageTask(holder.thumbnail);
+            dl.execute(item.getImageUrl());
+            dlList.add(dl);
         }
 
         return convertView;
@@ -102,32 +99,6 @@ public class BeerListAdapter extends ArrayAdapter<Beer> {
         TextView beerName;
         TextView alcVol;
         ImageView thumbnail;
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            Log.d("Info", "Loading image..."+urls[0]);
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 
 
